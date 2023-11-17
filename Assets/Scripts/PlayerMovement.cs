@@ -1,11 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
+
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public float ForwardSpeed = 1000f;
-    public float leftrightSpeed = 500f;
+    public float ForwardSpeed = 800f;
+    public float leftrightSpeed = 30f;
     Rigidbody rb;
     void Start()
     {
@@ -17,13 +16,17 @@ public class PlayerMovement : MonoBehaviour
     void FixedUpdate()
     {
         rb.AddForce(0, 0, ForwardSpeed * Time.deltaTime);
+        if (Input.GetKey("d"))
+        {
+            rb.AddForce(leftrightSpeed * Time.deltaTime, 0, 0,ForceMode.VelocityChange);
+        }
         if (Input.GetKey("a"))
         {
-            rb.AddForce(leftrightSpeed * Time.deltaTime, 0, 0);
+            rb.AddForce(-leftrightSpeed * Time.deltaTime, 0, 0,ForceMode.VelocityChange);
         }
-        else if (Input.GetKey("d"))
+        if(rb.position.y< -1f)
         {
-            rb.AddForce(0, leftrightSpeed * Time.deltaTime, 0);
+            FindObjectOfType<GameManager>().EndGame();
         }
     }
 }
