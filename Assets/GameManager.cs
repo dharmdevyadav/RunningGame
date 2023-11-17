@@ -13,6 +13,18 @@ public class GameManager : MonoBehaviour
         
         NextLevelUI.SetActive(true);
     }
+
+    public void Finished()
+    {
+
+        if (isGameFinished == false)
+        {
+            isGameFinished = true;
+            Debug.Log("Finished All Levels!!");
+            Invoke("Credit", 1.5f);
+
+        }
+    }
     public void EndGame()
     {
         if (isGameFinished == false)
@@ -26,6 +38,11 @@ public class GameManager : MonoBehaviour
 
     void Restart()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        SceneManager.LoadScene("EndScene");
+    }
+
+    void Credit()
+    {
+        SceneManager.LoadScene("CreditScene");
     }
 }

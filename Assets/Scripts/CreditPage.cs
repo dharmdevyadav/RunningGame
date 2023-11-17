@@ -2,16 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LevelComplete : MonoBehaviour
+public class CreditPage : MonoBehaviour
 {
     [SerializeField] GameManager gameManager;
+    [SerializeField] GameObject NextLevelUI;
     void OnTriggerEnter(Collider other)
     {
-       
-        gameManager.CompleteLevel();
-        
+        NextLevelUI.SetActive(true);
+        gameManager.Finished();
+
     }
-
-    
-
 }
